@@ -49,8 +49,8 @@ typedef struct __attribute__((packed)) {
 // ---------- Globals ----------
 bool isMain = false;
 uint8_t myDeviceId = 0;
-
-uint8_t broadcastMac[6] = {0xFF,0xFF,0xFF,0xFF,0xFF,0xFF};
+// main device MAC address: 20:e7:c8:5a:e5:58
+uint8_t broadcastMac[6] = {0x20, 0xE7, 0xC8, 0x5A, 0xE5, 0x58};
 
 SensorPacket   lastData[MAX_DEVICES + 1];   // index 1..8
 unsigned long  lastSeenMs[MAX_DEVICES + 1];
