@@ -49,8 +49,12 @@ typedef struct __attribute__((packed)) {
 // ---------- Globals ----------
 bool isMain = false;
 uint8_t myDeviceId = 0;
-// main device MAC address: 20:e7:c8:5a:e5:58
-uint8_t broadcastMac[6] = {0x20, 0xE7, 0xC8, 0x5A, 0xE5, 0x58};
+/*
+ESP32 I address CC:DB:A7:92:C8:4C
+ESP32 II address CC:DB:A7:93:44:7C
+address: 20:e7:c8:5a:e5:58
+*/
+uint8_t broadcastMac[6] = {0xCC, 0xDB, 0xA7, 0x92, 0xC8, 0x4C};
 
 SensorPacket   lastData[MAX_DEVICES + 1];   // index 1..8
 unsigned long  lastSeenMs[MAX_DEVICES + 1];
@@ -161,6 +165,8 @@ void setup() {
   myDeviceId = readDeviceIdFromSwitches();
 
   WiFi.mode(WIFI_STA);
+  Serial.print("Device MAC address: ");
+  Serial.println(WiFi.macAddress());
   WiFi.disconnect();
   esp_wifi_set_channel(WIFI_CHANNEL, WIFI_SECOND_CHAN_NONE);
 
